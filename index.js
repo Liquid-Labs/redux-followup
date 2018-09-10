@@ -1,31 +1,32 @@
 /**
- * Original code from [Marcelo Lazaroni](https://lazamar.github.io/dispatching-from-inside-of-reducers/)
- * TODO: better name should maybe be 'dispatchNext'. 'async' is kind of overloaded and 'next' is in any case more precise.
+ * Simple redux middleware function that monkey-patches actions with the
+ * 'followupAction' method. Followup actions are queued up and then dispatched
+ * after the current action (and possibly other actions) complete. Any actions
+ * queued will be dispatched in the order they were received (FIFO).
  */
-const asyncDispatchMiddleware = store => next => action => {
-  let syncActivityFinished = false;
-  let actionQueue = [];
+const followupActionMiddleware = store => next => action => {
+  let syncActivityFinished = false
+  let actionQueue = []
 
   function flushQueue() {
-    actionQueue.forEach(a => store.dispatch(a)); // flush queue
-    actionQueue = [];
+    actionQueue.forEach(a => store.dispatch(a))
+    actionQueue = []
   }
 
-  function asyncDispatch(asyncAction) {
-    actionQueue = actionQueue.concat([asyncAction]);
+  function followupAction(action) {
+    actionQueue = actionQueue.concat([action])
 
     if (syncActivityFinished) {
-      flushQueue();
+      flushQueue()
     }
   }
 
-  const actionWithAsyncDispatch =
-      Object.assign({}, action, { asyncDispatch });
+  const monkeyPatchedAction = Object.assign({}, action, { followupAction })
 
-  const res = next(actionWithAsyncDispatch);
-  syncActivityFinished = true;
-  flushQueue();
-  return res;
-};
+  const res = next(monkeyPatchedAction)
+  syncActivityFinished = true
+  flushQueue()
+  return res
+}
 
-export default asyncDispatchMiddleware;
+export default followupActionMiddleware
