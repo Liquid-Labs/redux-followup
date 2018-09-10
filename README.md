@@ -1,4 +1,4 @@
-# redux-followup-action
+# redux-followup
 
 Simple Redux middleware to asynchronously queue actions while processing an
 action.
