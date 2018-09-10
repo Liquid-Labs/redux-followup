@@ -1,0 +1,26 @@
+{
+  "name": "redux-followup-action",
+  "version": "0.1.0",
+  "description": "Simple Redux middleware to asynchonously queue actions from within an an action.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Liquid-Labs/redux-followup-action.git"
+  },
+  "keywords": [
+    "redux",
+    "redux-middleware",
+    "middleware",
+    "queue",
+    "async"
+  ],
+  "author": "Zane Rockenbaugh <zane@liquid-labs.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Liquid-Labs/redux-followup-action/issues"
+  },
+  "homepage": "https://github.com/Liquid-Labs/redux-followup-action#readme"
+}
