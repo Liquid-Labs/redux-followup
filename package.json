@@ -1,9 +1,14 @@
 {
-  "name": "redux-followup",
-  "version": "0.1.0",
+  "name": "@liquid-labs/redux-followup",
+  "version": "0.0.2",
   "description": "Simple Redux middleware to asynchronously queue actions while processing an action.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
   "scripts": {
+    "prepublishOnly": "rm -rf dist && babel ./index.js -d dist && find dist -name '*.test.js' | xargs rm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +27,10 @@
   "bugs": {
     "url": "https://github.com/Liquid-Labs/redux-followup/issues"
   },
-  "homepage": "https://github.com/Liquid-Labs/redux-followup#readme"
+  "homepage": "https://github.com/Liquid-Labs/redux-followup#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0"
+  }
 }
