@@ -1,3 +1,5 @@
+This project is no longer actively supported. The Liquid Labs project which was using it was refactored and it was no longer necessary.
+
 # redux-followup
 
 Simple Redux middleware to asynchronously queue actions while processing an
